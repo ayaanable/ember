@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Literata:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+@import "tailwindcss";
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-background);
+  overflow: hidden;
+}
+
+@theme {
+  --color-on-error-container: #ffdad6;
+  --color-surface-variant: #353535;
+  --color-secondary-container: #4a4644;
+  --color-surface-tint: #ffb95f;
+  --color-primary: #ffc174;
+  --color-on-secondary: #33302e;
+  --color-primary-fixed-dim: #ffb95f;
+  --color-on-primary: #472a00;
+  --color-surface-container-high: #2a2a2a;
+  --color-outline-variant: #534434;
+  --color-on-surface: #e5e2e1;
+  --color-surface-bright: #393939;
+  --color-surface-container-low: #1c1b1b;
+  --color-on-primary-fixed-variant: #653e00;
+  --color-primary-fixed: #ffddb8;
+  --color-on-primary-fixed: #2a1700;
+  --color-surface-container-highest: #353535;
+  --color-tertiary-fixed-dim: #ffb693;
+  --color-tertiary-container: #f79a6c;
+  --color-on-tertiary-fixed-variant: #76330d;
+  --color-on-tertiary-container: #72300a;
+  --color-surface: #131313;
+  --color-surface-container: #201f1f;
+  --color-on-secondary-fixed: #1e1b19;
+  --color-primary-container: #f59e0b;
+  --color-background: #131313;
+  --color-on-tertiary: #561f00;
+  --color-on-secondary-fixed-variant: #4a4644;
+  --color-inverse-on-surface: #313030;
+  --color-surface-container-lowest: #0e0e0e;
+  --color-inverse-surface: #e5e2e1;
+  --color-on-tertiary-fixed: #351000;
+  --color-error-container: #93000a;
+  --color-tertiary: #ffbea0;
+  --color-surface-dim: #131313;
+  --color-error: #ffb4ab;
+  --color-secondary: #ccc5c2;
+  --color-inverse-primary: #855300;
+  --color-on-primary-container: #613b00;
+  --color-on-error: #690005;
+  --color-secondary-fixed-dim: #ccc5c2;
+  --color-on-background: #e5e2e1;
+  --color-on-secondary-container: #bab4b1;
+  --color-tertiary-fixed: #ffdbcc;
+  --color-outline: #a08e7a;
+  --color-on-surface-variant: #d8c3ad;
+  --color-secondary-fixed: #e8e1de;
+
+  --font-sans: "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Literata", ui-serif, Georgia, serif;
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--color-surface-variant);
+  border-radius: 9999px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-outline);
+}
+
+.glow-active {
+  box-shadow: 0 0 15px -3px rgba(245, 158, 11, 0.15);
+}
+
+.blinking-cursor {
+  animation: softBlink 1.2s ease-in-out infinite;
+}
+
+@keyframes softBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+
+[contenteditable]:empty:before {
+  content: attr(placeholder);
+  color: var(--color-on-surface-variant);
+  pointer-events: none;
+  display: block; /* For Firefox */
+  opacity: 0.4;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes breathe {
+  0%, 100% {
+    transform: scaleY(1);
+    opacity: 0.8;
+    box-shadow: 0 0 8px rgba(245, 158, 11, 0.3);
+  }
+  50% {
+    transform: scaleY(1.1);
+    opacity: 1;
+    box-shadow: 0 0 14px rgba(245, 158, 11, 0.5);
+  }
+}
+
+.animate-breathe {
+  animation: breathe 4s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.editor-container {
+  transition: background-color 1s ease, box-shadow 1s ease;
+}
+
+.editor-container:focus-within {
+  background-color: rgba(245, 158, 11, 0.012);
+  box-shadow: inset 0 0 80px rgba(245, 158, 11, 0.015);
+}
+
+/* Accessibility: Prefers Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-breathe {
+    transform: scaleY(1) !important;
+    opacity: 1 !important;
+    box-shadow: 0 0 8px rgba(245, 158, 11, 0.5) !important;
+  }
+}
